@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/db0f5b6b5b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+
+
+<body class="body">
+    <section id="welcome-screen">
+        <div class="onescreen-wrapper">
+            <p class="goodbye-header">Welcome To biller</p>
+            Biller Web-App is used to manage bills and payments between roomates where they share the same UI (showing
+            the household's payments for the selected month) by assigning their profile to the same household. All
+            inital data currently presented on the website is used to simulate a already ongoing household with active
+            roomates and payments.
+            </p>
+            <p class="welcome-options-header">Main Functions And Options</p>
+            <p class="welcome-options">
+                <strong>Add Payments:</strong> Create a new payment and set details / file.
+                <br>
+                <strong>Delete Payments:</strong> Remove a payemnt permanently from the database.
+                <br>
+                <strong>Show Statistics:</strong> Includes household statistics and personal achievements.
+                <br>
+                <strong>Edit Household Data:</strong> Change household name, address, postal code.
+                <br>
+                <strong>Edit User Data:</strong> Change name, email, password and profile picture.
+                <br>
+                <strong>Filter Payments:</strong> View only payments which you should be reimbursed or pay for.
+                <br>
+                <strong>Select The Current User:</strong> Switch between the active user to show versatility.
+                <br>
+                <strong>Show Previous Months:</strong> Move to a selected month and show it's payments.
+            </p>
+            <button class="btn fill-btn welcome-moveToSite">Move To Website</button>
+        </div>
+    </section>
+    
+    <section id="main-site" class="blur">
+        <div class="header">
+            <a href="index.html" class="logo">BILLER</a>
+            <div class="prev-alert__container">
+                <p id="unpaid-warning" style="display: none;">There are unapaid payments from previous months</p>
+            </div>
+            <div class="date-picker">
+                <button class="date-back"><i class="fas fa-chevron-left"></i></button>
+                <div class="date-list-container">
+                    <ul class="date-list">
+                        <li class="date-item">
+                            <p class="date-month">January</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">Feburary</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">March</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">April</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">May</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">June</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">July</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">August</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">September</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">October</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">November</p>
+                        </li>
+                        <li class="date-item">
+                            <p class="date-month">December</p>
+                        </li>
+                    </ul>
+                </div>
+                <button class="date-forward"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="site-nav site-nav--closed">
+                <button class="nav-item dark__mode"><i class="fas fa-moon"></i></button>
+                <button class="nav-item stats__btn"><i class="fas fa-chart-bar"></i></button>
+                <button class="nav-item user__btn"><i class="fas fa-user"></i></button>
+                <button class="nav-item house__btn"><i class="fas fa-home"></i></button>
+                <button class="nav-item mobile-nav__expand-btn"><i class="fas fa-plus-circle"></i></button>
+                <button class="nav-item mobile-nav__btn"><i class="fas fa-chevron-circle-left"></i></button>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <div class="blue">
+                <div class="res-head">
+                    <div class="res-head__top">
+                        <p class="household">Hertzel 110</p>
+                        <button class="manage link">Manage</button>
+                    </div>
+                    <p class="mon-tooltip">Click manage to choose the current user
+                        <i class="fas fa-hand-point-up"></i>
+                    </p>
+                </div>
+
+                <div class="res-list">
+                    <!-- <div class="resident" id="res-1">
+                        <img src="profile1.jpg" alt="" class="profile">
+                        <div class="info">
+                            <p class="name">masha Simon</p>
+                            <p class="status">Paid Fully</p>
+                        </div>
+    
+                        <div class="item__delete">
+                            <button class="res-delete-btn"><i class="fas fa-minus-circle"></i></button>
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="action">
+                    <button class="btn add-pay fill-btn">+ Add Payment</button>
+                    <button class="disconnect link">Move To Information</button>
+                </div>
+            </div>
+
+            <div class="green">
+                <div class="monthly-head">
+                    <p class="title">Recurring Payments
+                        <i class="mon-sub-question fas fa-question-circle"></i>
+                        <span class="mon-tooltip">these payments will be auto renewed</span>
+                    </p>
+
+                    <div class="box">
+                        <p class="subtitle monthly__sum"> 0 NIS Total</p>
+                        <div class="btns">
+                            <div class="dropdown dropdown__month" id="month">
+                                <button class="filter link view__all" id="mon__filter">View All
+                                    <i class="fas fa-chevron-down" id="mon__filter">
+                                    </i>
+                                </button>
+
+                                <div class="mon-dropdown-content">
+                                    <button class="filter link view__mine" id="mon__filter">Reimbursed</button>
+                                    <button class="filter link my__debts" id="mon__filter">My Debts</button>
+                                </div>
+                            </div>
+                            <button class="mon-edit link list__edit">Edit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-list monthly__pay">
+                    <!-- <div class="item" id="item-1">
+                        <div class="item-info">
+                            <p class="item-name">Netflix</p>
+                            <p class="item-price">62 NIS</p>
+                        </div>
+    
+                        <div class="assign-list">
+                            <img src="profile1.jpg" alt="" class="assign-profile">
+                            <img src="profile2.jpg" alt="" class="assign-profile">
+                            <img src="profile3.jpg" alt="" class="assign-profile">
+                        </div>
+    
+                        <button class="mon-did-pay link">Pay Now</button>
+    
+                        <div class="item__delete">
+                            <button class="mon-item-delete-btn">
+                                <i class="fas fa-minus-circle"></i>
+                            </button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="red">
+                <div class="manualy-head">
+                    <p class="title">One Time Payments
+                        <i class="mon-sub-question fas fa-question-circle"></i>
+                        <span class="mon-tooltip">these payments will not be renewed</span>
+                    </p>
+
+                    <div class="box">
+                        <p class="subtitle manualy__sum"> 0 NIS Total </p>
+                        <div class="btns">
+                            <div class="dropdown dropdown__manual" id="manual">
+                                <button class="filter link view__all" id="man__filter">View All<i
+                                        class="fas fa-chevron-down" id="man__filter"></i></button>
+
+                                <div class="man-dropdown-content">
+                                    <button class="filter link view__mine" id="man__filter">Reimbursed</button>
+                                    <button class="filter link my__debts" id="man__filter">My Debts</button>
+                                </div>
+                            </div>
+                            <button class="edit link list__edit">Edit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-list manualy__pay">
+                    <!-- <div class="item" id="item-1">
+                        <div class="owner">
+                            <p class="owner__title">Owner</p>
+                            <img src="img/profile1.jpg" alt="" class="owner__image assign-profile">
+                        </div>
+                        <div class="item-info">
+                            <p class="item-name">Netflix</p>
+                            <p class="item-price">60 NIS</p>
+                        </div>
+    
+                        
+                        <div class="assign-list">
+                            
+                        </div>
+                        
+                        <button class="item-info-btn">
+                            <i class="fas fa-info-circle"></i>
+                        </button>
+    
+                        <button class="did-pay link">Pay Now</button>
+            
+                        <div class="item__delete">
+                            <button class="item-delete-btn">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="out add-pay-out">
+            <div class="form">
+                <div class="form-field">
+                    <p class="label">Payment Name <i class="astix">*</i></p>
+                    <input class="payment_name" type="text" maxlength="14">
+                </div>
+
+                <div class="form-field">
+                    <p class="label">How Much Was It? <i class="astix">*</i></p>
+                    <input class="total_to_pay" type="number" maxlength="8">
+                </div>
+
+                <div class="double-field">
+                    <div>
+                        <p class="label">Who Owes You?</p>
+                        <div class="gray-contain">
+                            <div class="assign-list assign-form">
+                                <!-- <img src="profile3.jpg" alt="" class="assign-profile" id = ""> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="label">Attach Receipt</p>
+                        <div class="gray-contain">
+                            <div class="inner-contain">
+                                <div class="upload__visible">
+                                    <img src="img/upload.svg" alt="" class="icon">
+                                    <progress id="uploader" value="0" max="100" class="prog__bar">0%</progress>
+                                    <p class="success">FILE UPLOADED!</p>
+                                </div>
+                                <!-- ONE FILE -->
+                                <input type="file" accept="image/*" class="file__upload">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-toggles">
+                    <div class="toggle-label-sub">
+                        <p class="label toggle-label">Recurring Payment</p>
+                        <p class="toggle-sub-label"></p>
+                    </div>
+                    <label for="" class="switch">
+                        <input class="checkbox" type="checkbox" id="isMonthly">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="form-action">
+                    <button class="btn add-pay fill-btn" id="final-add">+ Add Payment</button>
+                    <button class="btn add-pay clear-btn" id="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="out house-profile-out">
+            <img src="img/house2.png" alt="" class="houseimg">
+
+            <div class="specialform">
+                <div class="double-field">
+                    <div class="field-contain">
+                        <p class="label labelspecial">Household Name <i class="astix">*</i></p>
+                        <div class="input-and-edit">
+                            <input class="household_name stylish-input" type="text" maxlength="15" readonly>
+                            <button class="nav-item" id="name-edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="field-contain">
+                        <p class="label labelspecial">Address </p>
+                        <div class="input-and-edit">
+                            <input class="household_address stylish-input" type="text" maxlength="15" readonly>
+                            <button class="nav-item"><i class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="double-field">
+                    <div class="field-contain">
+                        <p class="label labelspecial">Household Residents </p>
+                        <input class="household_residents stylish-input" type="text" readonly>
+                    </div>
+
+                    <div class="field-contain">
+                        <p class="label labelspecial">Postal Code </p>
+                        <div class="input-and-edit">
+                            <input class="household_postal stylish-input" type="number" maxlength="7" readonly>
+                            <button class="nav-item"><i class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-action">
+                    <button class="btn house-save-changes fill-btn">Save Changes</button>
+                    <button class="btn house-cancel-changes clear-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="out user-profile-out">
+            <div class="profile__pic__selector">
+                <img src="" alt="" class="profile__image__user">
+
+                <div class="image__options">
+                    <img src="img/profile1.jpg" alt="" class="profile__pic__option">
+                    <img src="img/profile2.jpg" alt="" class="profile__pic__option">
+                    <img src="img/profile3.jpg" alt="" class="profile__pic__option">
+                    <img src="img/profile4.jpg" alt="" class="profile__pic__option">
+                    <img src="img/profile5.jpg" alt="" class="profile__pic__option">
+                    <img src="img/profile6.jpg" alt="" class="profile__pic__option">
+                    <img src="img/profile7.jpg" alt="" class="profile__pic__option">
+                    <img src="img/profile8.jpg" alt="" class="profile__pic__option">
+                </div>
+            </div>
+
+            <div class="specialform">
+                <div class="double-field">
+                    <div class="field-contain">
+                        <p class="label labelspecial">First Name <i class="astix">*</i></p>
+                        <div class="input-and-edit">
+                            <input class="user_firstName stylish-input" type="text" maxlength="15" readonly>
+                            <button class="nav-item" id="name-edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="field-contain">
+                        <p class="label labelspecial">Last Name </p>
+                        <div class="input-and-edit">
+                            <input class="user_lastName stylish-input" type="text" maxlength="16" readonly>
+                            <button class="nav-item"><i class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="double-field">
+
+                    <div class="field-contain">
+                        <p class="label labelspecial">Username <i class="astix">*</i></p>
+                        <div class="input-and-edit">
+                            <input class="user_name stylish-input" type="text" readonly>
+                            <button class="nav-item"><i class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="field-contain">
+                        <p class="label labelspecial">Password <i class="astix">*</i></p>
+                        <div class="input-and-edit">
+                            <input class="user_password stylish-input" type="password" readonly>
+                            <button class="nav-item"><i id="password-edit" class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-action">
+                    <button class="btn user-save-changes fill-btn">Save Changes</button>
+                    <button class="btn user-cancel-changes clear-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="out stats-out">
+            <button class="stats-exit">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="stats__grid">
+                <div class="stats__grid-column stats__achieve">
+                    <p class="stats__column-title">Achievements</p>
+                    <div class="stats__achieve-item">
+                        <i class="stats__achieve-icon fas fa-crown"></i>
+                        <div class="stats__achieve-info">
+                            <p class="stats__achieve-title">Most Times Owner</p>
+                            <p id="achieve__most-owner" class="stats__achieve-describe">Kakon has been the owner of 32
+                                expenses</p>
+                        </div>
+                        <img id="achieve__most-owner-pic" src="img/profile2.jpg" alt="" class="stats__achieve-profile">
+                    </div>
+                    <div class="stats__achieve-item">
+                        <i class="stats__achieve-icon fas fa-shekel-sign"></i>
+                        <div class="stats__achieve-info">
+                            <p class="stats__achieve-title">Pays The Most Money</p>
+                            <p id="achieve__most-money" class="stats__achieve-describe">Michael paid 3450 NIS in total
+                            </p>
+                        </div>
+                        <img id="achieve__most-money-pic" src="img/profile1.jpg" alt="" class="stats__achieve-profile">
+                    </div>
+                    <div class="stats__achieve-item">
+                        <i class="stats__achieve-icon fas fa-skull-crossbones"></i>
+                        <div class="stats__achieve-info">
+                            <p class="stats__achieve-title">Always In Debt</p>
+                            <p id="achieve__most-debt" class="stats__achieve-describe">Michael owed money 22 times</p>
+                        </div>
+                        <img id="achieve__most-debt-pic" src="img/profile1.jpg" alt="" class="stats__achieve-profile">
+                    </div>
+                    <div class="stats__achieve-item">
+                        <i class="stats__achieve-icon fas fa-piggy-bank"></i>
+                        <div class="stats__achieve-info">
+                            <p class="stats__achieve-title">Never Pays For Anything</p>
+                            <p id="achieve__most-cheap" class="stats__achieve-describe">Shawat was the owner only 4
+                                times
+                            </p>
+                        </div>
+                        <img id="achieve__most-cheap-pic" src="img/profile3.jpg" alt="" class="stats__achieve-profile">
+                    </div>
+                    <div class="stats__achieve-item">
+                        <i class="stats__achieve-icon fas fa-link"></i>
+                        <div class="stats__achieve-info">
+                            <p class="stats__achieve-title">The File Uploader</p>
+                            <p id="achieve__most-upload" class="stats__achieve-describe">Kakon uploaded 8 files in total
+                            </p>
+                        </div>
+                        <img id="achieve__most-upload-pic" src="img/profile2.jpg" alt="" class="stats__achieve-profile">
+                    </div>
+                </div>
+
+                <div class="stats__grid-column stats__charts">
+                    <p class="stats__column-title">Monthly Statistics</p>
+                    <div class="stats__chart-item">
+                        <p class="stats__chart-title">Distribution By Ownership</p>
+                        <div class="stats__chart-container">
+                            <canvas id="stats__chart-ownership"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="stats__double-charts">
+                        <div class="stats__chart-item">
+                            <p class="stats__chart-title">Payment Distribution (Monthly)</p>
+                            <div class="stats__chart-container">
+                                <canvas id="stats__chart-monthly"></canvas>
+                            </div>
+                        </div>
+                        <div class="stats__chart-item">
+                            <p class="stats__chart-title">Payment Distribution (Monthly)</p>
+                            <div class="stats__chart-container">
+                                <canvas id="stats__chart-alltime"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="loading-screen" hidden>
+        <div class="onescreen-wrapper" >
+            <i class="fas fa-spinner fa-pulse"></i>
+        </div>
+    </section>
+
+    <section id="goodbye-screen" hidden>
+        <div class="onescreen-wrapper">
+            <p class="goodbye-header">Thank you for using biller</p>
+            <p class="goodbye-content">This website was built using HTML, CSS, JavaScript (ES6+), firebase as a data
+                storage service and node.js for the backend.
+                Chart.js was used for the pie and bar charts on the statistics window.
+                The entire project's design pattern is module based OOP
+                <br>
+                <br>
+                Biller is an individual project created from scratch only by the two of us.
+                We are both second year software development students who decide to expand out programming skills beyond
+                the university's curriculum and create a self taught HTML, CSS, JavaScript project.
+                <br>
+                <br>
+                Biller Web-App is used to manage bills and payments between roomates where they share the same UI
+                (showing the household's payments for the selected month) by assigning their profile to the same
+                household. All inital data currently presented on the website is used to simulate a already ongoing
+                household with active roomates and payments.
+            </p>
+            <p class="goodbye-content">If you encountered any sort of bugs or problems using this website, please let us
+                know. We will be happy to fix it and improve ourselves. </p>
+            <div class="goodbye-creators">
+                <p class="goodbye-header">Created by:</p>
+                <div class="goodbye-creator">
+                    <p class="goodbye-creators-name">Sagi Kakon</p>
+                    <div class="goodbye-creators-link">
+                        <a href="https://www.linkedin.com/in/dor-shawat/" target="_blank">Linkedin</a>
+                        <p>|</p>
+                        <a href="mailto:sagikakon2@gmail.com">Email</a>
+                        <p>|</p>
+                        <a href="https://www.linkedin.com/in/dor-shawat/" target="_blank">Github</a>
+                    </div>
+                </div>
+                <div class="goodbye-creator">
+                    <p class="goodbye-creators-name">Dor Chaouat</p>
+                    <div class="goodbye-creators-link">
+                        <a href="https://www.linkedin.com/in/dor-shawat/" target="_blank">Linkedin</a>
+                        <p>|</p>
+                        <a href="mailto:dorsht1@gmail.com">Email</a>
+                        <p>|</p>
+                        <a href="https://www.linkedin.com/in/dor-shawat/" target="_blank">Github</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script src="js/bundle.js"></script></body>
+
+</html>
